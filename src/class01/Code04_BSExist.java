@@ -2,6 +2,8 @@ package class01;
 
 import java.util.Arrays;
 
+// 题目：有序数组中，是否存在某个数
+// 二分法
 public class Code04_BSExist {
 
 	public static boolean exist(int[] sortedArr, int num) {
@@ -12,7 +14,7 @@ public class Code04_BSExist {
 		int R = sortedArr.length - 1;
 		int mid = 0;
 		// L..R
-		while (L < R) { // L..R 至少两个数的时候
+		while (L < R) { // L..R 至少两个数的时候，只有一个数的时候也适用
 			mid = L + ((R - L) >> 1);
 			if (sortedArr[mid] == num) {
 				return true;
@@ -22,7 +24,7 @@ public class Code04_BSExist {
 				L = mid + 1;
 			}
 		}
-		return sortedArr[L] == num;
+		return sortedArr[L] == num;		// 返回是否存在该数的bool结果
 	}
 	
 	// for test

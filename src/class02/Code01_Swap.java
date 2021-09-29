@@ -58,7 +58,11 @@ public class Code01_Swap {
 		
 	}
 	
-	
+	// 两数交换，可以用这种方式交换的原则是：两数存在不同的内存空间中：
+	// 可以按这种方式交换的原因是：异或运算满足交换律和结合律：
+	// 0^N = N;
+	// N^N = 0;
+	// 异或预算实质就是按位不进位相加。
 	public static void swap (int[] arr, int i, int j) {
 		// arr[0] = arr[0] ^ arr[0];
 		arr[i]  = arr[i] ^ arr[j];

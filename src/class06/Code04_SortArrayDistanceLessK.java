@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class Code04_SortArrayDistanceLessK {
-
+	// 排序算法，但是每个元素移动位置不能超过K
 	public static void sortedArrDistanceLessK(int[] arr, int k) {
 		if (k == 0) {
 			return;

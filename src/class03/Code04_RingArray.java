@@ -2,6 +2,7 @@ package class03;
 
 public class Code04_RingArray {
 
+// 环形队列：关键是加一个size，存储容量。防止出现指针追赶的情况
 	public static class MyQueue {
 		private int[] arr;
 		private int pushi;// end

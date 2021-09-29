@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Code01_ReverseList {
 
+	// 单链表节点
 	public static class Node {
 		public int value;
 		public Node next;
@@ -14,9 +15,10 @@ public class Code01_ReverseList {
 		}
 	}
 
+// 双链表节点
 	public static class DoubleNode {
 		public int value;
-		public DoubleNode last;
+		public DoubleNode last;			// pre
 		public DoubleNode next;
 
 		public DoubleNode(int data) {
@@ -24,14 +26,15 @@ public class Code01_ReverseList {
 		}
 	}
 
+// 单链表翻转
 	//  head
 	//   a    ->   b    ->  c  ->  null
 	//   c    ->   b    ->  a  ->  null
 	public static Node reverseLinkedList(Node head) {
 		Node pre = null;
 		Node next = null;
-		while (head != null) {
-			next = head.next;
+		while (head != null) {		// 每循环一次，只是改变了一个数的状态，即只重新指向了当前节点的下一个节点，
+			next = head.next;		// 并没有实现将该节点作为下一个节点的下一个节点。
 			head.next = pre;
 			pre = head;
 			head = next;
@@ -39,13 +42,14 @@ public class Code01_ReverseList {
 		return pre;
 	}
 
+// 双链表翻转
 	public static DoubleNode reverseDoubleList(DoubleNode head) {
 		DoubleNode pre = null;
 		DoubleNode next = null;
 		while (head != null) {
 			next = head.next;
 			head.next = pre;
-			head.last = next;
+			head.last = next;		// 比单链表多了该步骤
 			pre = head;
 			head = next;
 		}

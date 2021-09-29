@@ -16,7 +16,7 @@ public class Code03_QuickSortRecursiveAndUnrecursive {
 		int more = R;
 		int index = L;
 		while (index < more) {
-			if (arr[index] == arr[R]) {
+			if (arr[index] == arr[R]) {		// 以最后的数作为比较数
 				index++;
 			} else if (arr[index] < arr[R]) {
 				swap(arr, index++, ++less);

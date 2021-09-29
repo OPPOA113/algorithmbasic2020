@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Code07_TwoQueueImplementStack {
-
+// 两个队列实现栈：
 	public static class TwoQueueStack<T> {
 		public Queue<T> queue;
 		public Queue<T> help;
@@ -14,12 +14,12 @@ public class Code07_TwoQueueImplementStack {
 			queue = new LinkedList<>();
 			help = new LinkedList<>();
 		}
-
+		// 实现入栈
 		public void push(T value) {
-			queue.offer(value);
+			queue.offer(value);				// 入队列
 		}
-
-		public T poll() {
+		// 实现出栈
+		public T poll() {					// 出队列
 			while (queue.size() > 1) {
 				help.offer(queue.poll());
 			}
@@ -29,7 +29,7 @@ public class Code07_TwoQueueImplementStack {
 			help = tmp;
 			return ans;
 		}
-
+		// 栈顶
 		public T peek() {
 			while (queue.size() > 1) {
 				help.offer(queue.poll());

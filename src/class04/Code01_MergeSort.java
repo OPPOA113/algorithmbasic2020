@@ -1,5 +1,5 @@
 package class04;
-
+// 归并排序
 public class Code01_MergeSort {
 
 	// 递归方法实现
@@ -25,11 +25,11 @@ public class Code01_MergeSort {
 	}
 
 	public static void merge(int[] arr, int L, int M, int R) {
-		int[] help = new int[R - L + 1];
+		int[] help = new int[R - L + 1];				// 临时数组，存放部分排序好的数据
 		int i = 0;
 		int p1 = L;
 		int p2 = M + 1;
-		while (p1 <= M && p2 <= R) {
+		while (p1 <= M && p2 <= R) {			// 归并排序：先存小的，再存大的
 			help[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
 		}
 		// 要么p1越界了，要么p2越界了
@@ -39,7 +39,7 @@ public class Code01_MergeSort {
 		while (p2 <= R) {
 			help[i++] = arr[p2++];
 		}
-		for (i = 0; i < help.length; i++) {
+		for (i = 0; i < help.length; i++) {		// 数据存放回原始数组的区间段位置
 			arr[L + i] = help[i];
 		}
 	}
@@ -51,12 +51,12 @@ public class Code01_MergeSort {
 		}
 		int N = arr.length;
 		// 步长
-		int mergeSize = 1;
+		int mergeSize = 1;					// 从最初的左右只有一个数比较开始，1 2 4 8；对应比较的区间长度为2,4,8,16
 		while (mergeSize < N) { // log N
 			// 当前左组的，第一个位置
 			int L = 0;
 			while (L < N) {
-				if (mergeSize >= N - L) {
+				if (mergeSize >= N - L) {	// 已经没有右边时，跳出。因为左边已经是有序的了，所以排序也结束了
 					break;
 				}
 				int M = L + mergeSize - 1;
@@ -64,7 +64,7 @@ public class Code01_MergeSort {
 				merge(arr, L, M, R);
 				L = R + 1;
 			}
-			// 防止溢出
+			// 防止溢出：防止int类型的mergeSize在<<1后出现数据溢出，而导致外层while跳出错误！！！。
 			if (mergeSize > N / 2) {
 				break;
 			}

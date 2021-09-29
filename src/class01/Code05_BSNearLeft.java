@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Code05_BSNearLeft {
 
-	// 在arr上，找满足>=value的最左位置
+	// 在arr上，找满足>=value的最左位置，如0153564，查找大于3的最左数索引
 	public static int nearestIndex(int[] arr, int value) {
 		int L = 0;
 		int R = arr.length - 1;
-		int index = -1; // 记录最左的对号
+		int index = -1; // 记录最左的序号
 		while (L <= R) { // 至少一个数的时候
 			int mid = L + ((R - L) >> 1);
 			if (arr[mid] >= value) {

@@ -3,6 +3,16 @@ package class06;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
+
+/*
+// 堆排序的过程：
+1、首先采用heapInsert或者heapify方法，将数组变成大根堆；
+	1）heapInsert是从上往下比较，时间复杂度为O(N*log(N))
+	2)heapify是从下往上的比较，时间复杂度为O(N)
+2、把堆得最大值和末尾值交换，缩小对的size，再将剩余的调整为大根堆，周而复始，时间复杂度为O(N*log(N))
+3、堆的大小减为0之后，排序结束。
+
+*/
 public class Code03_HeapSort {
 
 	// 堆排序额外空间复杂度O(1)
@@ -28,10 +38,10 @@ public class Code03_HeapSort {
 	}
 
 	// arr[index]刚来的数，往上
-	public static void heapInsert(int[] arr, int index) {
+	public static void heapInsert(int[] arr, int index) {		// heapInsert和heapify的作用都是把数组调整成大根堆	
 		while (arr[index] > arr[(index - 1) / 2]) {
 			swap(arr, index, (index - 1) / 2);
-			index = (index - 1) / 2;
+			index = (index - 1) / 2;							// 父节点
 		}
 	}
 
@@ -43,7 +53,7 @@ public class Code03_HeapSort {
 			// 1）只有左孩子，left -> largest
 			// 2) 同时有左孩子和右孩子，右孩子的值<= 左孩子的值，left -> largest
 			// 3) 同时有左孩子和右孩子并且右孩子的值> 左孩子的值， right -> largest
-			int largest = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;
+			int largest = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;		// 先左右孩子的较大值index,再与父节点比较，求得索引
 			// 父和较大的孩子之间，谁的值大，把下标给largest
 			largest = arr[largest] > arr[index] ? largest : index;
 			if (largest == index) {
