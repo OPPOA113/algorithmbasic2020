@@ -1,7 +1,8 @@
 package class04;
 
 public class Code03_ReversePair {
-// 求逆序对数量问题：如2 5 3 4 1 5 2 3===>逆序对数量为5
+// i,j a[i]>a[j]则为一个逆序对	
+// 求逆序对数量问题：如2 5 3 4 1 5 2 3===>逆序对数量为12
 	public static int reverPairNumber(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
@@ -28,9 +29,9 @@ public class Code03_ReversePair {
 		int p1 = m;
 		int p2 = r;
 		int res = 0;
-		while (p1 >= L && p2 > m) {
-			res += arr[p1] > arr[p2] ? (p2 - m) : 0;
-			help[i--] = arr[p1] > arr[p2] ? arr[p1--] : arr[p2--];
+		while (p1 >= L && p2 > m) {					// 从后往前遍历
+			res += arr[p1] > arr[p2] ? (p2 - m) : 0;		// 统计逆序对的数量：先划分左右部分，统计了逆序对之后，再进行排序，这不会影响统计的正确性！！！！！
+			help[i--] = arr[p1] > arr[p2] ? arr[p1--] : arr[p2--];	// 排序
 		}
 		while (p1 >= L) {
 			help[i--] = arr[p1--];
