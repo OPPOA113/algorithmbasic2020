@@ -1,7 +1,7 @@
 package class04;
 
 public class Code03_ReversePair {
-
+// 求逆序对数量问题：如2 5 3 4 1 5 2 3===>逆序对数量为4
 	public static int reverPairNumber(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
