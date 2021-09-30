@@ -20,11 +20,11 @@ public class Code07_TwoQueueImplementStack {
 		}
 		// 实现出栈
 		public T poll() {					// 出队列
-			while (queue.size() > 1) {
+			while (queue.size() > 1) {	// 把数据存入help队列，剩余最后一个
 				help.offer(queue.poll());
 			}
-			T ans = queue.poll();
-			Queue<T> tmp = queue;
+			T ans = queue.poll();		// 弹出队列最后加入的数据，作为栈的弹出（模拟后进先出）
+			Queue<T> tmp = queue;		// 交换队列：queue仍为原始数据队列，help仍为空的队列
 			queue = help;
 			help = tmp;
 			return ans;
@@ -34,9 +34,9 @@ public class Code07_TwoQueueImplementStack {
 			while (queue.size() > 1) {
 				help.offer(queue.poll());
 			}
-			T ans = queue.poll();
-			help.offer(ans);
-			Queue<T> tmp = queue;
+			T ans = queue.poll();		// 获取栈顶
+			help.offer(ans);		// 再把数据存回help队列，
+			Queue<T> tmp = queue;		// 交换队列：queue仍为原始数据队列，help仍为空的队列
 			queue = help;
 			help = tmp;
 			return ans;
