@@ -1,7 +1,19 @@
 package class04;
 
 public class Code02_SmallSum {
-
+	
+// 求小和问题，即数组中，左边比该数小的，所有数的和：方法1（暴力遍历法：O（N^2））;方法2（递归合并法O(N*log(N))）
+// 数组：2 5 2 3 6 1 2 5
+// 每个数对应的小和分别为：2-->0;
+//	5-->2;
+//	2-->0;
+//	3-->2+2=4;
+//	6-->2+5+2+3=12;
+//	1-->0;
+//	2-->1;
+//	5-->2+2+3+1+2=10
+	// 所以总的小和为0+2+0+4+12+0+1+10=29;
+	
 	public static int smallSum(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
@@ -35,7 +47,7 @@ public class Code02_SmallSum {
 		int p2 = m + 1;
 		int res = 0;
 		while (p1 <= m && p2 <= r) {
-			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;
+			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;		// 求右边比这个数大的有几个数！！注意梳理这个逻辑，是归并时才统计个数(r - p2 + 1) 并求和
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
 		}
 		while (p1 <= m) {
