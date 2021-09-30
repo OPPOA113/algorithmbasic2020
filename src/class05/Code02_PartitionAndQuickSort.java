@@ -11,17 +11,18 @@ public class Code02_PartitionAndQuickSort {
 	// arr[L..R]上，以arr[R]位置的数做划分值
 	// <= X > X
 	// <= X X
-	public static int partition(int[] arr, int L, int R) {
+	// 二分类函数作用：将L-R区间的数进行分类，以arr[R]作为基准，<=arr[R]的放在左边，>arr[R]的放在右边，返回==arr[R]最右边的位置。
+	public static int partition(int[] arr, int L, int R) {	
 		if (L > R) {
 			return -1;
 		}
 		if (L == R) {
 			return L;
 		}
-		int lessEqual = L - 1;
-		int index = L;
+		int lessEqual = L - 1;				// <=的值	
+		int index = L;					// 用于遍历的索引
 		while (index < R) {
-			if (arr[index] <= arr[R]) {
+			if (arr[index] <= arr[R]) {			// 以arr[R]为基准
 				swap(arr, index, ++lessEqual);
 			}
 			index++;
@@ -30,6 +31,7 @@ public class Code02_PartitionAndQuickSort {
 		return lessEqual;
 	}
 
+	// 三分类函数，将数组分成三部分
 	// arr[L...R] 玩荷兰国旗问题的划分，以arr[R]做划分值
 	// <arr[R] ==arr[R] > arr[R]
 	public static int[] netherlandsFlag(int[] arr, int L, int R) {
@@ -39,10 +41,10 @@ public class Code02_PartitionAndQuickSort {
 		if (L == R) {
 			return new int[] { L, R };
 		}
-		int less = L - 1; // < 区 右边界
-		int more = R; // > 区 左边界
+		int less = L - 1; 	// < 区 右边界
+		int more = R; 		// > 区 左边界
 		int index = L;
-		while (index < more) { // 当前位置，不能和 >区的左边界撞上
+		while (index < more) { 	// 当前位置，不能和 >区的左边界撞上
 			if (arr[index] == arr[R]) {
 				index++;
 			} else if (arr[index] < arr[R]) {
@@ -55,9 +57,10 @@ public class Code02_PartitionAndQuickSort {
 			}
 		}
 		swap(arr, more, R); // <[R]   =[R]   >[R]
-		return new int[] { less + 1, more };
+		return new int[] { less + 1, more };			// 返回的是==arr[R]的左右边界索引
 	}
 
+	// 1 快速排序，二分类 递归实现
 	public static void quickSort1(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -75,11 +78,8 @@ public class Code02_PartitionAndQuickSort {
 		process1(arr, M + 1, R);
 	}
 
-	
-	
-	
-	
-	
+
+	// 2 快速排序，三分类 递归实现
 	public static void quickSort2(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -98,12 +98,8 @@ public class Code02_PartitionAndQuickSort {
 		process2(arr, equalArea[1] + 1, R);
 	}
 
-	
-	
-	
-	
-	
-	
+
+	// 3 快速排序，三分类，随机获取比较基准数 递归实现
 	public static void quickSort3(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
